@@ -16,7 +16,7 @@ logger.addHandler(handler)
 
 bot = commands.Bot(command_prefix='!')
 bot.remove_command('help')
-TOKEN = open('TOKEN.txt', 'r').read()
+TOKEN = 'NjE3NDQ0MDk1MDk0MTYxNjMx.XW_28Q.vO8haDAFRkhjtfh2yCo5U8ZHF20'
 
 @bot.event
 async def on_ready():
