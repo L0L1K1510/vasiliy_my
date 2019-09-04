@@ -11,8 +11,8 @@ class Levels(commands.Cog):
 		self.bot = bot
 
 		self.bot.loop.create_task(self.save_users())
-		linux = '/home/maxlol98765/git/vasiliy/cogs/users.json'
-		with open(r'C:\Users\12\Desktop\BOT\cogs\users.json', 'r') as f:
+		linux = '/home/vasiliy_my/cogs/users.json'
+		with open(r'/home/vasiliy_my/cogs/users.json', 'r') as f:
 			self.users = json.load(f)
 
 	@commands.Cog.listener()
