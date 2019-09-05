@@ -7,6 +7,8 @@ import datetime
 import asyncio
 import os
 
+
+
 #Log
 logger = logging.getLogger('discord')
 logger.setLevel(logging.DEBUG)
@@ -14,9 +16,10 @@ handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w'
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
 
+quote_channel = 612029174978183199
 bot = commands.Bot(command_prefix='!')
 bot.remove_command('help')
-TOKEN = 'NjE3NDQ0MDk1MDk0MTYxNjMx.XW_28Q.vO8haDAFRkhjtfh2yCo5U8ZHF20'
+TOKEN = open('TOKEN.txt', 'r').read()
 
 @bot.event
 async def on_ready():
@@ -97,11 +100,18 @@ async def userinfo(ctx, member: discord.Member = None):
 
 	await ctx.send(embed=embed)
 
+@bot.command()
+async def quote(ctx, *, words: commands.clean_content):
+    await bot.get_channel(quote_channel).send(words)
+    # logs.write(str(ctx.author)+str(ctx.message.content))
+    print(str(ctx.author)+"   "+str(ctx.message.content))
+    await ctx.message.delete()
+
 #Status
 async def chng_pr():
 	await bot.wait_until_ready()
 
-	statuses = ['!help', 'site']
+	statuses = ['!help']
 
 	while not bot.is_closed():
 		status = random.choice(statuses)
@@ -112,7 +122,7 @@ async def chng_pr():
 
 
 #Cogs
-for cog in os.listdir(".//cogs"):
+for cog in os.listdir(".\\cogs"):
 	if cog.endswith(".py"):
 		try:
 			cog = f"cogs.{cog.replace('.py', '')}"
